@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Webpatser\Uuid\Uuid;
 
 class User extends Authenticatable
 {
@@ -17,7 +18,8 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
-
+    
+    protected $connection = 'mysql2';
     /**
      * The attributes that are mass assignable.
      *
@@ -58,4 +60,62 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+
+    protected $keyType = 'string';
+
+     /**
+     *  Setup model event hooks
+     */
+    public static function boot()
+    {
+        parent::boot();
+        self::creating(function ($model) {
+            $model->id = (string) Uuid::generate(4);
+        });
+    }
+
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'id';
+    }
+
+
+    public function oms(){
+        return $this->hasManyThrough(
+            'App\Om',
+            'App\Detail',
+            'om_id',
+            'id',
+        );
+    }
+
+    public function sections(){
+        return $this->hasManyThrough(
+            'App\Section',
+            'App\Detail',
+            'section_id',
+            'id',
+        );
+    }
+
+    public function permissions(){
+        return $this->hasManyThrough(
+            'App\Permission',
+            'App\Roler',
+            'user_id',
+            'roler_id'
+
+        );
+    }
+
+    public function rolers(){
+        return $this->BelongsToMany('App\Roler', 'roler_user', 'user_id', 'roler_id')->withPivot('user_id','roler_id');
+    }
 }
