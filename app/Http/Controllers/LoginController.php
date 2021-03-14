@@ -46,7 +46,7 @@ class LoginController extends Controller
             $user = User::where('id', session('LoggedUser'))->first();
             $data = ['LoggedUserInfo'=>$user];
         }
-        return view('site.profile', compact('user'));
+        return view('site.dashboard', compact('user'));
     }
 
     /**
