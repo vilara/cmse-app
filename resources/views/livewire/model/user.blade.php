@@ -1,71 +1,110 @@
 <main>
-    <div class="py-12">
+    <div class="py-12 border-4">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <div>
 
 
-                    <div class="md:grid md:grid-cols-3 md:gap-6" >
-                        <div class="md:col-span-1">
-                            <div class="px-4 sm:px-0">
-                                <h3 class="text-lg font-medium text-gray-900">Profile Information</h3>
 
-                                <p class="mt-1 text-sm text-gray-600">
-                                    Update your account&#039;s profile information and email address.
-                                </p>
+
+            <div class="bg-gray-100 mx-auto max-w-6xl bg-white py-20 px-12 lg:px-24 shadow-xl mb-24">
+                <form>
+                    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
+                        <div class="-mx-3 md:flex mb-6">
+                            <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+                                <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="company">
+                                    Company Name*
+                                </label>
+                                <input class="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3"
+                                    id="company" type="text" placeholder="Netboard">
+                                <div>
+                                    <span class="text-red-500 text-xs italic">
+                                        Please fill out this field.
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="md:w-1/2 px-3">
+                                <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="title">
+                                    Title*
+                                </label>
+                                <input class="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3"
+                                    id="title" type="text" placeholder="Software Engineer">
                             </div>
                         </div>
-
-                     
-                        <div class="mt-5 md:mt-0 md:col-span-2">
-                            <form wire:submit.prevent="">
-                                <div class="px-4 py-5 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
-                                    <div class="grid grid-cols-6 gap-6">
-                                        <!-- Name -->
-                                        @if ($show)
-                                            <div class="col-span-6 sm:col-span-4">
-                                            <label class="block font-medium text-sm text-gray-700" for="name">
-                                                Nome
-                                            </label>
-                                            <input
-                                                class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"
-                                                id="name" type="text" wire:model.defer="name" autocomplete="name">
-                                        </div> 
-                                        @endif
-                                       
-
-                                        <!-- Email -->
-                                        <div class="col-span-6 sm:col-span-4">
-                                            <label class="block font-medium text-sm text-gray-700" for="email">
-                                                Email
-                                            </label>
-                                            <input
-                                                class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"
-                                                id="email" type="email" wire:model.defer="state.email">
-                                        </div>
-                                    </div>
+                        <div class="-mx-3 md:flex mb-6">
+                            <div class="md:w-full px-3">
+                                <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="application-link">
+                                    Application Link*
+                                </label>
+                                <input class="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3"
+                                    id="application-link" type="text" placeholder="http://....">
+                            </div>
+                        </div>
+                        @if ($show)
+                            
+                       
+                        <div class="-mx-3 md:flex mb-2">
+                            <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+                                <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="location">
+                                    Location*
+                                </label>
+                                <div>
+                                    <select
+                                        class="w-full bg-gray-200 border border-gray-200 text-black text-xs py-3 px-4 pr-8 mb-3 rounded"
+                                        id="location">
+                                        <option>Abuja</option>
+                                        <option>Enugu</option>
+                                        <option>Lagos</option>
+                                    </select>
                                 </div>
-
-                                <div
-                                    class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md">
-                                    <button type="submit"
-                                        class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150"
-                                        wire:loading.attr="disabled">
-                                        Save
-                                    </button>
-
-                                    <x-jet-button wire:click.prevent="$toggle('show')">
-                                        {{ __('Create') }}
-                                    </x-jet-button>
+                            </div>
+                            <div class="md:w-1/2 px-3">
+                                <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="job-type">
+                                    Job Type*
+                                </label>
+                                <div>
+                                    <select
+                                        class="w-full bg-gray-200 border border-gray-200 text-black text-xs py-3 px-4 pr-8 mb-3 rounded"
+                                        id="job-type">
+                                        <option>Full-Time</option>
+                                        <option>Part-Time</option>
+                                        <option>Internship</option>
+                                    </select>
                                 </div>
-                            </form>
+                            </div>
+                            <div class="md:w-1/2 px-3">
+                                <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="department">
+                                    Department*
+                                </label>
+                                <div>
+                                    <select
+                                        class="w-full bg-gray-200 border border-gray-200 text-black text-xs py-3 px-4 pr-8 mb-3 rounded"
+                                        id="department">
+                                        <option>Engineering</option>
+                                        <option>Design</option>
+                                        <option>Customer Support</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+            
+                        @endif
+                        <div class="-mx-3 md:flex mt-2">
+                            <div class="md:w-full px-3">
+                                <button wire:click.prevent="$toggle('show')"
+                                    class="md:w-full bg-gray-900 text-white font-bold py-2 px-4 border-b-4 hover:border-b-2 border-gray-500 hover:border-gray-100 rounded-full">
+                                    Button
+                                </button>
+                            </div>
                         </div>
                     </div>
-
-
-
-                </div>
+                </form>
             </div>
+
+
+ 
         </div>
     </div>
 </main>
+
+
+
+
