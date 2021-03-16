@@ -43,103 +43,196 @@
 
     </div>
 </div>
-<header class="bg-green text-white py-6 px-4">
-    <h1>CMSE - APP</h1>
-</header>
-<div class="flex flex-wrap -mx-4 my-6">
 
-    <div class="p-4 w-full md:w-1/2 lg:w-1/3">
-        <div class="bg-gray-100 p-4">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Libero eum, architecto corrupti, vitae doloremque ducimus,
-                optio voluptas eligendi assumenda eaque aliquam molestias
-                praesentium esse animi fugiat dolores odio minus mollitia.</p>
+<main class="container leading-normal my-12 mx-auto px-4">
+    <h1 class="mb-8 text-5xl">
+        Simple teind grid
+    </h1>
+    <p class="text-xl">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Assumenda similique quasi praesentium! Debitis alias 
+        quae error veritatis tenetur perferendis cupiditate? 
+        Perferendis quasi quod suscipit magni aspernatur animi qui sit quo.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Assumenda similique quasi praesentium! Debitis alias 
+        quae error veritatis tenetur perferendis cupiditate? 
+        Perferendis quasi quod suscipit magni aspernatur animi qui sit quo.
+    </p>
+    <div class="flex flex-wrap -mx-4 mt-10">
+        <div class="mb-4 px-4 md:md-0 w-full md:w-1/3 lg:w-1/4">
+           <h2 class="border-b border-black mb-2">
+               Sub heading 1
+           </h2>
+           <p>
+               Lorem ipsum dolor sit amet consectetur
+                adipisicing elit. Ut voluptate et voluptatem.
+                 Officiis, amet minus. Doloremque maiores 
+                 dignissimos eum incidunt sapiente quod quas 
+                 commodi dolorem repudiandae at sed, unde magni.
+           </p>
+        </div>
+        <div class="mb-4 px-4 md:md-0 w-full md:w-2/3  lg:w-3/4">
+            <h2 class="border-b border-black mb-2">
+                Sub heading 2
+            </h2>
+            <p>
+                Lorem ipsum dolor sit amet consectetur
+                 adipisicing elit. Ut voluptate et voluptatem.
+                  Officiis, amet minus. Doloremque maiores 
+                  dignissimos eum incidunt sapiente quod quas 
+                  commodi dolorem repudiandae at sed, unde magni.
+            </p>
+         </div>
+    </div>
+    <div class="flex flex-wrap -mx-4 my-6">
+
+        <div class="p-4 w-full md:w-1/2 lg:w-1/3">
+            <div class="bg-gray-100 p-4">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Libero eum, architecto corrupti, vitae doloremque ducimus,
+                    optio voluptas eligendi assumenda eaque aliquam molestias
+                    praesentium esse animi fugiat dolores odio minus mollitia.</p>
+            </div>
+        </div>
+        <div class="p-4 w-full md:w-1/2 lg:w-2/3">
+            <div class="bg-gray-100 p-4">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Libero eum, architecto corrupti, vitae doloremque ducimus,
+                    optio voluptas eligendi assumenda eaque aliquam molestias
+                    praesentium esse animi fugiat dolores odio minus mollitia.</p>
+            </div>
+        </div>
+        <div class="p-4 w-full md:w-1/2 lg:w-1/3">
+            <div class="bg-gray-100 p-4">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Libero eum, architecto corrupti, vitae doloremque ducimus,
+                    optio voluptas eligendi assumenda eaque aliquam molestias
+                    praesentium esse animi fugiat dolores odio minus mollitia.</p>
+            </div>
+        </div>
+        <div class="p-4 w-full md:w-1/2 lg:w-2/3">
+            <div class="bg-gray-100 p-4">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Libero eum, architecto corrupti, vitae doloremque ducimus,
+                    optio voluptas eligendi assumenda eaque aliquam molestias
+                    praesentium esse animi fugiat dolores odio minus mollitia.</p>
+            </div>
+        </div>
+        <div class="p-4 w-full md:w-1/2 lg:w-1/3">
+            <div class="bg-gray-100 p-4">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Libero eum, architecto corrupti, vitae doloremque ducimus,
+                    optio voluptas eligendi assumenda eaque aliquam molestias
+                    praesentium esse animi fugiat dolores odio minus mollitia.</p>
+            </div>
+        </div>
+        <div class="p-4 w-full md:w-1/2 lg:w-2/3">
+            <div class="bg-gray-100 p-4">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Libero eum, architecto corrupti, vitae doloremque ducimus,
+                    optio voluptas eligendi assumenda eaque aliquam molestias
+                    praesentium esse animi fugiat dolores odio minus mollitia.</p>
+            </div>
         </div>
     </div>
-    <div class="p-4 w-full md:w-1/2 lg:w-2/3">
-        <div class="bg-gray-100 p-4">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Libero eum, architecto corrupti, vitae doloremque ducimus,
-                optio voluptas eligendi assumenda eaque aliquam molestias
-                praesentium esse animi fugiat dolores odio minus mollitia.</p>
+
+    <div class="flex flex-wrap -mx-6 p-4">
+        <div class="my-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
+            <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
+        </div>
+        <div class="my-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
+            <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
+        </div>
+        <div class="my-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
+            <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
+        </div>
+        <div class="my-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
+            <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
+        </div>
+        <div class="my-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
+            <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
+        </div>
+        <div class="my-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
+            <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
+        </div>
+        <div class="my-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
+            <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
+        </div>
+        <div class="my-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
+            <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
+        </div>
+        <div class="my-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
+            <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
+        </div>
+        <div class="my-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
+            <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
+        </div>
+        <div class="my-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
+            <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
+        </div>
+        <div class="my-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
+            <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
         </div>
     </div>
-    <div class="p-4 w-full md:w-1/2 lg:w-1/3">
-        <div class="bg-gray-100 p-4">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Libero eum, architecto corrupti, vitae doloremque ducimus,
-                optio voluptas eligendi assumenda eaque aliquam molestias
-                praesentium esse animi fugiat dolores odio minus mollitia.</p>
-        </div>
+
+
+<div class="flex flex-wrap -mx-4">
+    <div class="px-4 w-full lg:w-1/2">
+        <p class="leading-normal text-xl"> Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Perspiciatis laboriosam
+            molestias dolorum quas sit nulla tenetur, doloribus
+            fuga blanditiis, eius ea ut ad quam eaque odio sapiente
+            similique doloremque! Amet! fuga blanditiis, eius ea ut ad quam eaque odio sapiente
+            similique doloremque! Amet! fuga blanditiis, eius ea ut ad </p>
     </div>
-    <div class="p-4 w-full md:w-1/2 lg:w-2/3">
-        <div class="bg-gray-100 p-4">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Libero eum, architecto corrupti, vitae doloremque ducimus,
-                optio voluptas eligendi assumenda eaque aliquam molestias
-                praesentium esse animi fugiat dolores odio minus mollitia.</p>
-        </div>
-    </div>
-    <div class="p-4 w-full md:w-1/2 lg:w-1/3">
-        <div class="bg-gray-100 p-4">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Libero eum, architecto corrupti, vitae doloremque ducimus,
-                optio voluptas eligendi assumenda eaque aliquam molestias
-                praesentium esse animi fugiat dolores odio minus mollitia.</p>
-        </div>
-    </div>
-    <div class="p-4 w-full md:w-1/2 lg:w-2/3">
-        <div class="bg-gray-100 p-4">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Libero eum, architecto corrupti, vitae doloremque ducimus,
-                optio voluptas eligendi assumenda eaque aliquam molestias
-                praesentium esse animi fugiat dolores odio minus mollitia.</p>
+    <div class="px-4 w-full lg:w-1/2">
+        <div class="flex flex-wrap -mx-2">
+            <div class="mb-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
+                <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
+            </div>
+            <div class="mb-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
+                <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
+            </div>
+            <div class="mb-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
+                <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
+            </div>
+            <div class="mb-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
+                <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
+            </div>
+            <div class="mb-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
+                <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
+            </div>
+            <div class="mb-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
+                <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
+            </div>
+            <div class="mb-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
+                <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
+            </div>
+            <div class="mb-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
+                <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
+            </div>
+            <div class="mb-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
+                <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
+            </div>
+            <div class="mb-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
+                <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
+            </div>
+            <div class="mb-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
+                <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
+            </div>
+            <div class="mb-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
+                <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
+            </div>
         </div>
     </div>
 </div>
+</main>
 
 
-<div class="flex flex-wrap -mx-4 p-4">
-
-    <div class="my-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
-        <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
-    </div>
-    <div class="my-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
-        <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
-    </div>
-    <div class="my-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
-        <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
-    </div>
-    <div class="my-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
-        <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
-    </div>
-    <div class="my-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
-        <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
-    </div>
-    <div class="my-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
-        <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
-    </div>
-    <div class="my-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
-        <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
-    </div>
-    <div class="my-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
-        <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
-    </div>
-    <div class="my-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
-        <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
-    </div>
-    <div class="my-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
-        <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
-    </div>
-    <div class="my-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
-        <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
-    </div>
-    <div class="my-2 px-2 w-1/2 md:w-1/3 lg:w-1/6">
-        <img src="{{ asset('img/640x640.png') }}" alt="placeholder" class="block h-auto w-full">
-    </div>
 
 
-</div>
+
+
 
 
 
