@@ -3,6 +3,7 @@
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Model\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Pages\PrincipalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +31,8 @@ Route::group(['middleware' => ['AlreadyLoggedIn']], function(){
 Route::group(['middleware' => ['authSite']], function(){
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::get('/profile', [LoginController::class, 'profile'])->name('profile');
-    Route::get('/dashboard', [Controller::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [LoginController::class, 'profile'])->name('dashboard');
+    Route::get('/principal', [PrincipalController::class, 'index'])->name('principal');
     Route::resource('users', UserController::class);
 });
 //Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
