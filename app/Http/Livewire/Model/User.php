@@ -14,16 +14,18 @@ class User extends Component
 
     public $user;
     public $detail;
-    public $show = true;
+    public $show = false;
+    public $contentIsVisible = true;
     public $oms;
     public $cargos;
     public $sections;
     public $masculino = true;
     public $feminino = true;
+    public $password_confirmation;
 
-    public function mount(ModelsUser $user, Detail $detail)
+    public function mount(ModelsUser $user, Detail $detail, $show = false)
     {
-
+        $this->show = $show;
         $this->user = $user;
         $this->detail = $detail;
         $this->oms = Om::all();
@@ -63,6 +65,10 @@ class User extends Component
         'detail.section_id.required' => 'Esse campo é obrigatório',
     ];
 
+
+    public function teste(){
+        $this->show = true;
+    }
     public function cadastrar()
     {
         $this->validate();

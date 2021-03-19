@@ -1,5 +1,6 @@
 @php
     use App\Models\User;
+ //   dd(Auth::user());
 @endphp
 
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">

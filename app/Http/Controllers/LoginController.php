@@ -29,6 +29,7 @@ class LoginController extends Controller
         if($user){
             if(Hash::check($request->password, $user->password)){
                 $request->session()->put('LoggedUser', $user->id);
+              //  Auth::login($user);
                 return redirect('profile');
             }else{
 
@@ -46,6 +47,7 @@ class LoginController extends Controller
             $user = User::where('id', session('LoggedUser'))->first();
             $data = ['LoggedUserInfo'=>$user];
         }
+      //  return view('site.dashboard', compact(Auth::user()));
         return view('site.dashboard', compact('user'));
     }
 
