@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Model;
 use App\Models\Cargo;
 use App\Models\Civil;
 use App\Models\Detail;
+use App\Models\Forca;
 use App\Models\Militar;
 use App\Models\Om;
 use App\Models\Postograd;
@@ -22,10 +23,12 @@ class Users extends Component
     public $detail;
     public $civil;
     public $sexo;
+    public $situacao;
+
     public $password;
     public $password_confirmation;
 
-        
+
     /**
      * Propriedades para popular os selects
      *
@@ -35,16 +38,19 @@ class Users extends Component
     public $cargos;
     public $sections;
     public $postograds;
+    public $forcas;
 
-    public function mount(User $user, Detail $detail, Militar $militar, Civil $civil){
-      $this->user = $user;
-      $this->detail = $detail;
-      $this->militar = $militar;
-      $this->civil = $civil;
-      $this->oms = Om::all();
-      $this->cargos = Cargo::all();
-      $this->sections = Section::all();
-      $this->postograds = Postograd::all();
+    public function mount(User $user, Detail $detail, Militar $militar, Civil $civil)
+    {
+        $this->user = $user;
+        $this->detail = $detail;
+        $this->militar = $militar;
+        $this->civil = $civil;
+        $this->oms = Om::all();
+        $this->cargos = Cargo::all();
+        $this->sections = Section::all();
+        $this->postograds = Postograd::all();
+        $this->forcas = Forca::all();
     }
 
     public function rules()
@@ -63,13 +69,16 @@ class Users extends Component
             'detail.section_id' => 'required',
             'detail.detailable_type' => 'required',
             'militar.postograd_id' => '',
+            'militar.nome_guerra' => '',
+            'militar.forca_id' => '',
+            'situacao' => '',
             'civil.primeiro_nome' => '',
-            
+
         ];
-        
+
         return $array;
     }
-      
+
 
     protected $messages = [
         'user.name.required' => 'Esse campo é obrigatório',
@@ -95,8 +104,9 @@ class Users extends Component
         'detail.detailable_type.required' => 'Esse campo é obrigatório',
     ];
 
-     
-    public function UserData(){
+
+    public function UserData()
+    {
         $this->user->password = Hash::make($this->password);
         return $this->user;
     }
@@ -104,33 +114,44 @@ class Users extends Component
 
     public function cadastrar()
     {
+
+
         $this->validate(); 
-        if($this->detail->detailable_type == 'militar'){
-            $this->validate(['militar.postograd_id' => 'required']);
-        }elseif($this->detail->detailable_type == 'civil'){
+
+        if ($this->detail->detailable_type == 'militar') {
+            $this->validate([
+                'militar.postograd_id' => 'required',
+                'militar.nome_guerra' => 'required',
+                'militar.forca_id' => 'required',
+                'situacao' => 'required',
+            ]);
+        } elseif ($this->detail->detailable_type == 'civil') {
             $this->validate(['civil.primeiro_nome' => 'required']);
         }
 
-       
-       
+
+
+
         $this->UserData()->save();
-        
-        $this->militar->situacao = 'ativa';
-        $this->militar->nome_guerra = 'vilara';
-        $this->militar->forca_id = 1;
-        $this->militar->save();
 
-        
+        if ($this->detail->detailable_type == 'militar') {
+            $this->militar->situacao = $this->situacao;
+            $this->militar->save();
+        }
+
+        if ($this->detail->detailable_type == 'civil') {
+            $this->civil->save();
+        }
 
 
-        $this->detail->detailable_type == 'militar' && $this->detail->detailable_id = Militar::all()->last()->id;
+
+
+
         $this->detail->id = User::where('cpf', $this->user->cpf)->get()->first()->id;
         $this->detail->sexo = $this->sexo;
-       
-        
-        $this->detail->save();
+        $this->detail->detailable_type == 'militar' && $this->detail->detailable()->associate($this->militar)->save();
+        $this->detail->detailable_type == 'civil' && $this->detail->detailable()->associate($this->civil)->save();
         dd($this->detail);
-        
     }
 
     public function render()

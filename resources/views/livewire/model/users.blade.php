@@ -196,6 +196,27 @@
                             <x-jet-input-error for="militar.nome_guerra" class="mt-2" />
                         </div>
 
+                            {{-- Forcas militar --}}
+                    <div class="col-span-6 col sm:col-span-2">
+                        <x-jet-label for="militar.forca_id" value="OM" />
+                        <x-select disabled='' ref="abrev" :arra="$forcas" class="mt-1 w-full block"
+                            wire:model="militar.forca_id" />
+                        <x-jet-input-error for="militar.forca_id" class="mt-2" />
+                    </div>
+
+                     {{-- Situaca Militar --}}
+                     <div class="col-span-6 col sm:col-span-1">
+                        <x-jet-label for="situacao" value="{{ __('Ativa') }}" />
+                        <x-jet-input id="situacao" value="ativa" type="radio" class="mt-1 block form-check-input"
+                            name="situacao" wire:model="situacao" />
+                        <x-jet-input-error for="situacao" class="mt-2" />
+                    </div>
+                    <div class="col-span-6 col sm:col-span-1">
+                        <x-jet-label for="situacao" value="{{ __('Reserva') }}" />
+                        <x-jet-input id="situacao" value="reserva" type="radio" class="mt-1 block" name="situacao"
+                            wire:model="situacao" />
+                    </div>
+
 
 
                     @elseif($detail->detailable_type == 'civil')
