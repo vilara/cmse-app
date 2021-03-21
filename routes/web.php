@@ -30,9 +30,9 @@ Route::group(['middleware' => ['AlreadyLoggedIn']], function(){
 
 Route::group(['middleware' => ['authSite']], function(){
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-    Route::get('/profile', [LoginController::class, 'profile'])->name('profile');
+    Route::get('/principal', [LoginController::class, 'profile'])->name('principal');
     Route::get('/dashboard', [LoginController::class, 'profile'])->name('dashboard');
-    Route::get('/principal', [PrincipalController::class, 'index'])->name('principal');
+    Route::get('/teste', [PrincipalController::class, 'teste'])->name('teste');
     Route::resource('users', UserController::class);
 });
 //Route::post('/login', [LoginController::class, 'authenticate'])->name('login');

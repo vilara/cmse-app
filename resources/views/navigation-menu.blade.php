@@ -17,14 +17,14 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-jet-nav-link href="{{ route('principal') }}" :active="request()->routeIs('principal')">
+                        {{ __('Principal') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('users.create') }}" :active="request()->routeIs('users.create')">
                         {{ __('Cadastro') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('principal') }}" :active="request()->routeIs('principal')">
-                        {{ __('Principal') }}
+                    <x-jet-nav-link href="{{ route('teste') }}" :active="request()->routeIs('teste')">
+                        {{ __('Teste') }}
                     </x-jet-nav-link>
                 </div>
             </div>

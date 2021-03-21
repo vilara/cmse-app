@@ -30,7 +30,7 @@ class LoginController extends Controller
             if(Hash::check($request->password, $user->password)){
                 $request->session()->put('LoggedUser', $user->id);
               //  Auth::login($user);
-                return redirect('profile');
+                return redirect('principal');
             }else{
 
                 return back()->with('fail', 'Erro no email ou senha');
@@ -48,7 +48,7 @@ class LoginController extends Controller
             $data = ['LoggedUserInfo'=>$user];
         }
       //  return view('site.dashboard', compact(Auth::user()));
-        return view('site.dashboard', compact('user'));
+        return view('site.pages.principal', compact('user'));
     }
 
     /**

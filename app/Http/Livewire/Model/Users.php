@@ -61,7 +61,7 @@ class Users extends Component
             'user.cpf' => 'required|string|size:11|unique:App\Models\User,cpf|digits:11',
             'password' => 'required|min:8|confirmed',
             'detail.idt' => 'required',
-            'detail.nome_completo' => 'required|string|min:6',
+            'detail.nome_completo' => 'required|string|min:6|unique:App\Models\Detail,nome_completo',
             'sexo' => 'required',
             'detail.dtNasc' => 'required',
             'detail.om_id' => 'required',
@@ -97,6 +97,7 @@ class Users extends Component
         'detail.idt.required' => 'Esse campo é obrigatório',
         'sexo.required' => 'Esse campo é obrigatório',
         'detail.nome_completo.required' => 'Esse campo é obrigatório',
+        'detail.nome_completo.unique' => 'Este nome já está cadastrado no sistema',
         'detail.dtNasc.required' => 'Esse campo é obrigatório',
         'detail.om_id.required' => 'Esse campo é obrigatório',
         'detail.cargo_id.required' => 'Esse campo é obrigatório',
@@ -115,8 +116,7 @@ class Users extends Component
     public function cadastrar()
     {
 
-
-        $this->validate(); 
+        $this->validate();
 
         if ($this->detail->detailable_type == 'militar') {
             $this->validate([
