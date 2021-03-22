@@ -1,119 +1,29 @@
-<div class="p-6 h-43 mx-auto flex justify-between flex-wrap bg-green-50">
-    <div class="w-48 bg-white rounded-lg shadow-md p-6 cursor-pointer mb-8  hover:bg-green-100 focus:outline-none focus:shadow">
-        <div class="flex justify-between items-center mb-3">
-            <h1 class="uppercase text-base tracking-wide text-blue-400">
-                teste
-            </h1>
-        </div>
-        <div class="mb-1 font-semibold text-blue-800">
-            <span class="text-5xl mr-2">
-                1
-            </span>
-            <span class="text-2xl">
-                Gb
-            </span>
-        </div>
-        <div>
-            <span class="text-xl text-blue-600">$</span>
-            <span class="text-xl font-semibold text-blue-100"></span>
-            <span class="text-xl font-semibold text-blue-100"></span>
-            <span class="text-xl font-semibold text-blue-100"></span>
-        </div>
-    </div>
-    <div class="w-48 bg-white rounded-lg shadow-md p-6 cursor-pointer mb-8  hover:bg-green-100 focus:outline-none focus:shadow">
-        <div class="flex justify-between items-center mb-3">
-            <h1 class="uppercase text-base tracking-wide text-blue-400">
-                teste
-            </h1>
-        </div>
-        <div class="mb-1 font-semibold text-blue-800">
-            <span class="text-5xl mr-2">
-                1
-            </span>
-            <span class="text-2xl">
-                Gb
-            </span>
-        </div>
-        <div>
-            <span class="text-xl text-blue-600">$</span>
-            <span class="text-xl font-semibold text-blue-100"></span>
-            <span class="text-xl font-semibold text-blue-100"></span>
-            <span class="text-xl font-semibold text-blue-100"></span>
-        </div>
-    </div>
-    <div class="w-48 bg-white rounded-lg shadow-md p-6 cursor-pointer mb-8  hover:bg-green-100 focus:outline-none focus:shadow">
-        <div class="flex justify-between items-center mb-3">
-            <h1 class="uppercase text-base tracking-wide text-blue-400">
-                teste
-            </h1>
-        </div>
-        <div class="mb-1 font-semibold text-blue-800">
-            <span class="text-5xl mr-2">
-                1
-            </span>
-            <span class="text-2xl">
-                Gb
-            </span>
-        </div>
-        <div>
-            <span class="text-xl text-blue-600">$</span>
-            <span class="text-xl font-semibold text-blue-100"></span>
-            <span class="text-xl font-semibold text-blue-100"></span>
-            <span class="text-xl font-semibold text-blue-100"></span>
-        </div>
-    </div>
-    <div class="w-48 bg-white rounded-lg shadow-md p-6 cursor-pointer mb-8  hover:bg-green-100 focus:outline-none focus:shadow">
-        <div class="flex justify-between items-center mb-3">
-            <h1 class="uppercase text-base tracking-wide text-blue-400">
-                teste
-            </h1>
-        </div>
-        <div class="mb-1 font-semibold text-blue-800">
-            <span class="text-5xl mr-2">
-                1
-            </span>
-            <span class="text-2xl">
-                Gb
-            </span>
-        </div>
-        <div>
-            <span class="text-xl text-blue-600">$</span>
-            <span class="text-xl font-semibold text-blue-100"></span>
-            <span class="text-xl font-semibold text-blue-100"></span>
-            <span class="text-xl font-semibold text-blue-100"></span>
+<div class="h-40 flex justify-center gap-8 items-center bg-gray-300 shadow-lg">
+    <div class="card">
+        <div class="flex flex-col justify-center items-center">
+            <svg class="w-6" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user"
+                class="svg-inline--fa fa-user fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512">
+                <path fill="currentColor"
+                    d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z">
+                </path>
+            </svg>
+            <div class="mt-3">
+                <span class="uppercase font-semibold text-xl ">
+                    Cadastrar
+                </span>
+            </div>
+            <div class="badge">
+                <svg class="w-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user"
+                    class="svg-inline--fa fa-user fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 448 512">
+                    <path fill="currentColor"
+                        d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z">
+                    </path>
+                </svg>
+                <span class="ml-1 text-xs">2134</span>
+            </div>
         </div>
     </div>
 
-    <div class="w-48 bg-white rounded-lg shadow-md p-6 cursor-pointer mb-8">
-        <div class="flex justify-between items-center mb-3">
-            <h1 class="uppercase text-base tracking-wide text-blue-400">
-                teste
-            </h1>
-        </div>
-        <div class="mb-1 font-semibold text-blue-800">
-            <span class="text-5xl mr-2">
-                1
-            </span>
-            <span class="text-2xl">
-                Gb
-            </span>
-        </div>
-        <div>
-            <span class="text-xl text-blue-600">$</span>
-            <span class="text-xl font-semibold text-blue-100"></span>
-            <span class="text-xl font-semibold text-blue-100"></span>
-            <span class="text-xl font-semibold text-blue-100"></span>
-        </div>
-    </div>
 </div>
-
-{{-- <div class="min-h-screen bg-gray-100 font-sans">
-   <div class="w-80 mx-auto pt-8 pb-6 flex justify-between items-end border-b-2 border-gray">
-      <div class="tex-2xl text-blue-600">
-         <div class="no-underline text-blue-600 hover:underline">
-            Cancel plan
-         </div>
-
-      </div>
-   </div>
-</div> --}}
