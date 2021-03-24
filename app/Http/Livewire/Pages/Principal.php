@@ -8,11 +8,12 @@ use Livewire\Component;
 class Principal extends Component
 {
 
-    public $nr;
-    
+
+    protected $listeners = ['updateUser' => 'render'];
 
     public function mount(){
-       $this->nr = User::all()->count();
+       
+       
     }
 
     public function cadastroForm(){

@@ -12,10 +12,17 @@ class Lista extends Component
 
     use WithPagination;
 
+    public $isActive;
     public $headers;
     public $sortColumn = 'created_at';
     public $sortDirection = 'asc';
     public $searchTerm;
+
+    protected $queryString = [
+        'isActive' => ['except' => false],
+        'searchTerm'  => ['except' => ''],
+        'sortColumn' => ['except' => 'created_at'],
+    ];
 
     public function headerConfig()
     {
@@ -23,7 +30,8 @@ class Lista extends Component
             'id' => 'id',
             'name' => 'Login',
             'email' => 'Email',
-            'created_at' => 'Criado'
+            'created_at' => 'Criado',
+            'action' => 'Action'
         ];
     }
 
@@ -43,14 +51,27 @@ class Lista extends Component
 
     private function resultData()
     {
-        return User::search('Marcelo')->paginate(10);
-        /* return User::where(function ($query) {
-            $query->where('name', '!=', 't');
-            if ($this->searchTerm != "") {
-                $query->where('name', 'like', '%' . $this->searchTerm . '%');
-                $query->orWhere('email', 'like', '%' . $this->searchTerm . '%');
-            }
-        })->orderBy($this->sortColumn, $this->sortDirection)->paginate(15); */
+        //  return User::search('Marcelo')->paginate(10);
+
+
+        return User::where('name', '!=', 't')
+            ->when($this->searchTerm, function ($query) {
+                $query->where('name', 'like', '%' . $this->searchTerm . '%')
+                ->orWhere('email', 'like', '%' . $this->searchTerm . '%');
+            })
+            ->when($this->isActive, function ($query) {
+                return $query->active();
+            })
+            ->orderBy($this->sortColumn, $this->sortDirection)->paginate(15);
+    }
+
+    public function updatingIsActive()
+    {
+        $this->resetPage();
+    }
+    public function updatingSearchTerm()
+    {
+        $this->resetPage();
     }
 
     public function render()

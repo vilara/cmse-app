@@ -151,6 +151,10 @@ class Users extends Component
         $this->detail->sexo = $this->sexo;
         $this->detail->detailable_type == 'militar' && $this->detail->detailable()->associate($this->militar)->save();
         $this->detail->detailable_type == 'civil' && $this->detail->detailable()->associate($this->civil)->save();
+       
+
+       $this->emit('updatUser');
+       
         dd($this->detail);
     }
 

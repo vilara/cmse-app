@@ -120,4 +120,8 @@ class User extends Authenticatable
     public function rolers(){
         return $this->BelongsToMany('App\Roler', 'roler_user', 'user_id', 'roler_id')->withPivot('user_id','roler_id');
     }
+
+    public function scopeActive($query){
+        return $query->where('active',1);
+    }
 }
