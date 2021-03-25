@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Model;
+namespace App\Http\Livewire\Model\User;
 
 use App\Models\Cargo;
 use App\Models\Civil;
@@ -39,6 +39,8 @@ class Users extends Component
     public $sections;
     public $postograds;
     public $forcas;
+
+    protected $listeners = ['cadastrar'];
 
     public function mount(User $user, Detail $detail, Militar $militar, Civil $civil)
     {
@@ -116,50 +118,52 @@ class Users extends Component
     public function cadastrar()
     {
 
+       // dd($this->detail);
+
         $this->validate();
 
-        if ($this->detail->detailable_type == 'militar') {
-            $this->validate([
-                'militar.postograd_id' => 'required',
-                'militar.nome_guerra' => 'required',
-                'militar.forca_id' => 'required',
-                'situacao' => 'required',
-            ]);
-        } elseif ($this->detail->detailable_type == 'civil') {
-            $this->validate(['civil.primeiro_nome' => 'required']);
-        }
+    //     if ($this->detail->detailable_type == 'militar') {
+    //         $this->validate([
+    //             'militar.postograd_id' => 'required',
+    //             'militar.nome_guerra' => 'required',
+    //             'militar.forca_id' => 'required',
+    //             'situacao' => 'required',
+    //         ]);
+    //     } elseif ($this->detail->detailable_type == 'civil') {
+    //         $this->validate(['civil.primeiro_nome' => 'required']);
+    //     }
 
 
 
 
-        $this->UserData()->save();
+    //     $this->UserData()->save();
 
-        if ($this->detail->detailable_type == 'militar') {
-            $this->militar->situacao = $this->situacao;
-            $this->militar->save();
-        }
+    //     if ($this->detail->detailable_type == 'militar') {
+    //         $this->militar->situacao = $this->situacao;
+    //         $this->militar->save();
+    //     }
 
-        if ($this->detail->detailable_type == 'civil') {
-            $this->civil->save();
-        }
-
-
+    //     if ($this->detail->detailable_type == 'civil') {
+    //         $this->civil->save();
+    //     }
 
 
 
-        $this->detail->id = User::where('cpf', $this->user->cpf)->get()->first()->id;
-        $this->detail->sexo = $this->sexo;
-        $this->detail->detailable_type == 'militar' && $this->detail->detailable()->associate($this->militar)->save();
-        $this->detail->detailable_type == 'civil' && $this->detail->detailable()->associate($this->civil)->save();
+
+
+    //     $this->detail->id = User::where('cpf', $this->user->cpf)->get()->first()->id;
+    //     $this->detail->sexo = $this->sexo;
+    //     $this->detail->detailable_type == 'militar' && $this->detail->detailable()->associate($this->militar)->save();
+    //     $this->detail->detailable_type == 'civil' && $this->detail->detailable()->associate($this->civil)->save();
        
 
-       $this->emit('updatUser');
+    //    $this->emit('updatUser');
        
-        dd($this->detail);
+      
     }
 
     public function render()
     {
-        return view('livewire.model.users');
+        return view('livewire.model.user.users');
     }
 }

@@ -16,14 +16,16 @@ use App\Http\Controllers\Pages\PrincipalController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('login');
+// });
+
 
 Route::post('/create', [LoginController::class, 'create'])->name('auth-create');
 Route::post('/check', [LoginController::class, 'check'])->name('auth-check');
 
 Route::group(['middleware' => ['AlreadyLoggedIn']], function(){
+    Route::get('/', [LoginController::class, 'login']);
     Route::get('/login', [LoginController::class, 'login'])->name('login');
     Route::get('/register', [LoginController::class, 'register'])->name('register');
 });

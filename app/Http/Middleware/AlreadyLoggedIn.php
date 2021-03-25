@@ -16,9 +16,9 @@ class AlreadyLoggedIn
      */
     public function handle(Request $request, Closure $next)
     {
-        if (session()->has('LoggedUser') && (url('register') == $request->url() ||url('login') == $request->url() )  ) {
+        if (session()->has('LoggedUser') && (url('register') == $request->url() || url('login') == $request->url() || url('/') == $request->url())  ) {
 
-            return back();
+            return redirect('/principal');
         }
         return $next($request);
     }

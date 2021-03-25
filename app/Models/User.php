@@ -18,14 +18,14 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
-    
+
     protected $connection = 'mysql2';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
- /*    protected $fillable = [
+    /*    protected $fillable = [
         'name',
         'email',
         'password',
@@ -66,7 +66,7 @@ class User extends Authenticatable
 
     protected $keyType = 'string';
 
-     /**
+    /**
      *  Setup model event hooks
      */
     public static function boot()
@@ -89,7 +89,8 @@ class User extends Authenticatable
     }
 
 
-    public function oms(){
+    public function oms()
+    {
         return $this->hasManyThrough(
             'App\Om',
             'App\Detail',
@@ -98,7 +99,8 @@ class User extends Authenticatable
         );
     }
 
-    public function sections(){
+    public function sections()
+    {
         return $this->hasManyThrough(
             'App\Section',
             'App\Detail',
@@ -107,7 +109,8 @@ class User extends Authenticatable
         );
     }
 
-    public function permissions(){
+    public function permissions()
+    {
         return $this->hasManyThrough(
             'App\Permission',
             'App\Roler',
@@ -117,11 +120,26 @@ class User extends Authenticatable
         );
     }
 
-    public function rolers(){
-        return $this->BelongsToMany('App\Roler', 'roler_user', 'user_id', 'roler_id')->withPivot('user_id','roler_id');
+    public function rolers()
+    {
+        return $this->BelongsToMany('App\Roler', 'roler_user', 'user_id', 'roler_id')->withPivot('user_id', 'roler_id');
     }
 
-    public function scopeActive($query){
-        return $query->where('active',1);
+    public function scopeActive($query)
+    {
+        return $query->where('active', 1);
+    }
+
+    public static function search($query)
+    {
+        return 
+        empty($query) 
+        ? static::query()->where('name', '!=', 't') 
+        : static::where('name', '!=', 't')
+            ->where(function ($q) use ($query) {
+                $q
+                    ->where('name', 'LIKE', '%' . $query . '%')
+                    ->orWhere('email', 'LIKE', '%' . $query . '%');
+            });
     }
 }
