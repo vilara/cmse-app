@@ -1,6 +1,5 @@
 @php
     use App\Models\User;
- //   dd(Auth::user());
 @endphp
 
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
@@ -24,7 +23,7 @@
                         {{ __('Cadastro') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
-                        {{ __('Listar Usuáios') }}
+                        {{ __('Listar Usuários') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('teste') }}" :active="request()->routeIs('teste')">
                         {{ __('Teste') }}

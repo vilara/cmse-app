@@ -17,6 +17,7 @@ class Lista extends Component
     public $sortColumn = 'created_at';
     public $sortDirection = 'asc';
     public $searchTerm;
+    public $modalFormVisible = false;
 
     protected $queryString = [
         'isActive' => ['except' => false],
@@ -31,8 +32,12 @@ class Lista extends Component
             'name' => 'Login',
             'email' => 'Email',
             'created_at' => 'Criado',
-            'action' => 'Action'
         ];
+    }
+
+
+    public function createShowModal(){
+        $this->modalFormVisible = true;
     }
 
     public function mount()
