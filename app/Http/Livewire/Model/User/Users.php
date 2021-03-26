@@ -118,44 +118,46 @@ class Users extends Component
     public function cadastrar()
     {
 
-       // dd($this->detail);
-
+        
         $this->validate();
-
-    //     if ($this->detail->detailable_type == 'militar') {
-    //         $this->validate([
-    //             'militar.postograd_id' => 'required',
-    //             'militar.nome_guerra' => 'required',
-    //             'militar.forca_id' => 'required',
-    //             'situacao' => 'required',
-    //         ]);
-    //     } elseif ($this->detail->detailable_type == 'civil') {
-    //         $this->validate(['civil.primeiro_nome' => 'required']);
-    //     }
-
-
-
-
-    //     $this->UserData()->save();
-
-    //     if ($this->detail->detailable_type == 'militar') {
-    //         $this->militar->situacao = $this->situacao;
-    //         $this->militar->save();
-    //     }
-
-    //     if ($this->detail->detailable_type == 'civil') {
-    //         $this->civil->save();
-    //     }
+        dd($this->detail);
+        
+        if ($this->detail->detailable_type == 'militar') {
+            $this->validate([
+                'militar.postograd_id' => 'required',
+                'militar.nome_guerra' => 'required',
+                'militar.forca_id' => 'required',
+                'situacao' => 'required',
+            ]);
+        } elseif ($this->detail->detailable_type == 'civil') {
+            $this->validate(['civil.primeiro_nome' => 'required']);
+        }
 
 
 
 
+        $this->UserData()->save();
 
-    //     $this->detail->id = User::where('cpf', $this->user->cpf)->get()->first()->id;
-    //     $this->detail->sexo = $this->sexo;
-    //     $this->detail->detailable_type == 'militar' && $this->detail->detailable()->associate($this->militar)->save();
-    //     $this->detail->detailable_type == 'civil' && $this->detail->detailable()->associate($this->civil)->save();
+        if ($this->detail->detailable_type == 'militar') {
+            $this->militar->situacao = $this->situacao;
+            $this->militar->save();
+        }
+
+        if ($this->detail->detailable_type == 'civil') {
+            $this->civil->save();
+        }
+
+
+
+
+
+        $this->detail->id = User::where('cpf', $this->user->cpf)->get()->first()->id;
+        $this->detail->sexo = $this->sexo;
+        $this->detail->detailable_type == 'militar' && $this->detail->detailable()->associate($this->militar)->save();
+        $this->detail->detailable_type == 'civil' && $this->detail->detailable()->associate($this->civil)->save();
        
+
+        dd($this->detail);
 
     //    $this->emit('updatUser');
        

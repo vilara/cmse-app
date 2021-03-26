@@ -40,6 +40,8 @@ class UserForm extends Component
     public $postograds;
     public $forcas;
 
+    protected $listeners = ['cadastrar'];
+
     public function mount(User $user, Detail $detail, Militar $militar, Civil $civil)
     {
         $this->user = $user;
@@ -116,49 +118,59 @@ class UserForm extends Component
     public function cadastrar()
     {
 
-       /*  $this->validate();
 
+        $this->validate();
+        
+        
+        
         if ($this->detail->detailable_type == 'militar') {
             $this->validate([
                 'militar.postograd_id' => 'required',
                 'militar.nome_guerra' => 'required',
                 'militar.forca_id' => 'required',
                 'situacao' => 'required',
-            ]);
-        } elseif ($this->detail->detailable_type == 'civil') {
-            $this->validate(['civil.primeiro_nome' => 'required']);
+                ]);
+            } elseif ($this->detail->detailable_type == 'civil') {
+                $this->validate(['civil.primeiro_nome' => 'required']);
+            }
+            
+            
+            
+            
+            $this->UserData()->save();
+            
+            if ($this->detail->detailable_type == 'militar') {
+                $this->militar->situacao = $this->situacao;
+                $this->militar->save();
+            }
+            
+            if ($this->detail->detailable_type == 'civil') {
+                $this->civil->save();
+            }
+            
+            
+            
+            
+            
+            $this->detail->id = User::where('cpf', $this->user->cpf)->get()->first()->id;
+            $this->detail->sexo = $this->sexo;
+            $this->detail->detailable_type == 'militar' && $this->detail->detailable()->associate($this->militar)->save();
+            $this->detail->detailable_type == 'civil' && $this->detail->detailable()->associate($this->civil)->save();
+
+
+
+          /*  unset($this->user);
+           unset($this->militar);
+           unset($this->detail); */
+            $this->emit('triggerRefresh');
+            $this->emit('hiddenShowModal');
+            
+            // $this->dispatchBrowserEvent('user-saved', ['action' => 'Criado', 'user_name' => $this->detail->nome_completo]);
+            
         }
-
-
-
-
-        $this->UserData()->save();
-
-        if ($this->detail->detailable_type == 'militar') {
-            $this->militar->situacao = $this->situacao;
-            $this->militar->save();
+        
+        public function render()
+        {
+            return view('livewire.model.user.user-form');
         }
-
-        if ($this->detail->detailable_type == 'civil') {
-            $this->civil->save();
-        }
-
-
-
-
-
-        $this->detail->id = User::where('cpf', $this->user->cpf)->get()->first()->id;
-        $this->detail->sexo = $this->sexo;
-        $this->detail->detailable_type == 'militar' && $this->detail->detailable()->associate($this->militar)->save();
-        $this->detail->detailable_type == 'civil' && $this->detail->detailable()->associate($this->civil)->save();
-        */
-
-       $this->dispatchBrowserEvent('user-saved', ['action' => 'Criado', 'user_name' => $this->detail->nome_completo]);
-       
-    }
-
-    public function render()
-    {
-        return view('livewire.model.user.user-form');
-    }
 }

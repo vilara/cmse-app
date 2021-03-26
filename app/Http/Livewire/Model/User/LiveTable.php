@@ -18,7 +18,10 @@ class LiveTable extends Component
     public $sortColumn = 'created_at';
     public $sortDirection = 'asc';
     public $searchTerm;
-    public $modalFormVisible = false;
+    public $modalFormVisible;
+    public $user;
+
+    protected $listeners = ['hiddenShowModal', 'triggerRefresh' => '$refresh'];
 
 
     protected $queryString = [
@@ -37,14 +40,22 @@ class LiveTable extends Component
         ];
     }
 
-    public function createShowModal(){
+
+    public function createShowModal()
+    {
         $this->modalFormVisible = true;
     }
 
+    public function hiddenShowModal()
+    {
+        $this->modalFormVisible = false;
+    }
+
+
     public function mount()
     {
+        $this->modalFormVisible = 0;
         $this->headers = $this->headerConfig();
-        // $this->nome = $nome;
     }
 
 
@@ -55,23 +66,13 @@ class LiveTable extends Component
         $this->sortDirection = $this->sortDirection == 'asc' ? 'desc' : 'asc';
     }
 
-    private function resultData()
-    {
-        //  return User::search('Marcelo')->paginate(10);
 
-
-        return User::search($this->searchTerm)
-            ->when($this->isActive, function ($query) {
-                return $query->active();
-            })
-            ->orderBy($this->sortColumn, $this->sortDirection)
-            ->paginate(10);
-    }
 
     public function updatingIsActive()
     {
         $this->resetPage();
     }
+    
     public function updatingSearchTerm()
     {
         $this->resetPage();
@@ -80,6 +81,14 @@ class LiveTable extends Component
 
     public function render()
     {
-        return view('livewire.model.user.live-table', ['data' => $this->resultData()]);
+
+        $user =  User::search($this->searchTerm)
+        
+        ->when($this->isActive, function ($query) {
+            return $query->active();
+        })
+        ->orderBy($this->sortColumn, $this->sortDirection)->paginate(10);
+
+        return view('livewire.model.user.live-table', ['tt' => $user]);
     }
 }

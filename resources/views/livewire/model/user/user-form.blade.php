@@ -249,12 +249,11 @@
 
                                         </div>
                                     </div>
-                                    <div class="px-4 py-1 bg-gray-300 text-right sm:px-6">
-                                        <button wire:click.prevent="$emitTo('users', 'cadastrar')"
-                                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    {{-- <div class="px-4 py-1 bg-gray-300 text-right sm:px-6">
+                                        <button  class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                             Salvar
                                         </button>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -286,10 +285,10 @@
 
                                         </div>
                                         <div class="px-4 py-1 bg-gray-300 text-right sm:px-6">
-                                            <button wire:click="$toggle('modalFormVisible')" type="submit"
+                                           {{--  <button type="submit"
                                                 class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                                 Salvar
-                                            </button>
+                                            </button> --}}
                                         </div>
                                     </div>
                                 </div>
