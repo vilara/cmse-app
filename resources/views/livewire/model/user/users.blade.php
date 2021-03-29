@@ -1,5 +1,24 @@
 <div class="border-b border-gray-200 border-t overflow-hidden sm:border sm:rounded-lg">
 
+    @if (session()->has('message'))
+        <div class="flex items-center bg-green-500 text-white text-sm font-bold px-4 py-3 relative" role="alert"
+            x-data="{show: true}" x-show="show">
+            <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path
+                    d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z" />
+            </svg>
+            <p>{{ session('message') }}</p>
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3" @click="show = false">
+                <svg class="fill-current h-6 w-6 text-white" role="button" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20">
+                    <title>Close</title>
+                    <path
+                        d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+                </svg>
+            </span>
+        </div>
+    @endif
+
     <div class="bg-gray-200">
 
         <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
@@ -140,7 +159,7 @@
                                                 </div>
                                                 <div class="mt-4 space-y-4">
                                                     <div class="flex items-center">
-                                                        <input wire:model="sexo" id="sexo" name="sexo" value="masculino"
+                                                        <input wire:model="sexo" name="sexo" value="masculino"
                                                             type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                                         <label for="sexo"
@@ -149,7 +168,7 @@
                                                         </label>
                                                     </div>
                                                     <div class="flex items-center">
-                                                        <input wire:model="sexo" id="sexo1" name="sexo" value="feminino"
+                                                        <input wire:model="sexo" name="sexo" value="feminino"
                                                             type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                                         <label for="sexo1"
@@ -169,8 +188,8 @@
                                                 </div>
                                                 <div class="mt-4 space-y-4">
                                                     <div class="flex items-center">
-                                                        <input wire:model="detail.detailable_type" id="type"
-                                                            name="detail.detailable_type" value="militar" type="radio"
+                                                        <input wire:model="detailable_type" name="detailable_type"
+                                                            value="militar" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                                         <label for="type"
                                                             class="ml-3 block text-sm font-medium text-gray-500">
@@ -178,20 +197,26 @@
                                                         </label>
                                                     </div>
                                                     <div class="flex items-center">
-                                                        <input wire:model="detail.detailable_type" id="type1"
-                                                            name="detail.detailable_type" value="civil" type="radio"
+                                                        <input wire:model="detailable_type" name="detailable_type"
+                                                            value="civil" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                                         <label for="type1"
                                                             class="ml-3 block text-sm font-medium text-gray-500">
                                                             Civil
                                                         </label>
                                                     </div>
-                                                    <x-jet-input-error for="detail.detailable_type" class="mt-2" />
+                                                    <x-jet-input-error for="detailable_type" class="mt-2" />
                                                 </div>
                                             </fieldset>
                                         </div>
                                     </div>
 
+                                </div>
+                                <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                                    <button wire:click.prevent="limpar" type="submit"
+                                        class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        Limpar
+                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -207,7 +232,7 @@
                     </div>
                 </div>
             </div>
-            @if ($detail->detailable_type == 'militar')
+            @if ($detailable_type == 'militar')
                 {{-- Início Informações Específicas militar --}}
                 <div class="mt-10 sm:mt-0">
                     <div class="md:grid md:grid-cols-3 md:gap-6">
@@ -276,6 +301,28 @@
 
                                     </div>
                                 </div>
+
+                                @if ($errors->all())
+                                    <div class="flex items-center bg-red-500 text-white text-sm font-bold px-4 py-3 relative"
+                                        role="alert" x-data="{show: true}" x-show="show">
+                                        <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20">
+                                            <path
+                                                d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z" />
+                                        </svg>
+                                        <p>O presente formulário contem erros...</p>
+                                        <span class="absolute top-0 bottom-0 right-0 px-4 py-3" @click="show = false">
+                                            <svg class="fill-current h-6 w-6 text-white" role="button"
+                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                                <title>Close</title>
+                                                <path
+                                                    d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                @endif
+
+
                                 <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
                                     <button wire:click.prevent="cadastrar" type="submit"
                                         class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -286,7 +333,7 @@
                         </div>
                     </div>
                     {{-- Final Informações Específicas Militar --}}
-                @elseif ($detail->detailable_type == 'civil')
+                @elseif ($detailable_type == 'civil')
                     {{-- separador --}}
                     <div class="hidden sm:block" aria-hidden="true">
                         <div class="">
@@ -332,12 +379,8 @@
                     {{-- Final Informações Específicas Civil --}}
             @endif
 
-
         </div>
 
     </div>
 
 </div>
-
-
-

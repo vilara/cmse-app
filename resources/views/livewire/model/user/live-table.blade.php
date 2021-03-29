@@ -90,8 +90,6 @@
             <x-jet-secondary-button wire:click="$toggle('modalFormVisible')">
                 {{ __('Cancel') }}
             </x-jet-secondary-button>
-
-
         </x-slot>
     </x-jet-dialog-modal>
 
