@@ -39,11 +39,13 @@ class UserForm extends Component
     public $sections;
     public $postograds;
     public $forcas;
+    public $tt;
 
-    protected $listeners = ['cadastrar'];
+    protected $listeners = ['cadastrar', 'editarUser', 'limparForm'];
 
     public function mount(User $user, Detail $detail, Militar $militar, Civil $civil)
     {
+        
         $this->user = $user;
         $this->detail = $detail;
         $this->militar = $militar;
@@ -113,6 +115,27 @@ class UserForm extends Component
         $this->user->password = Hash::make($this->password);
         return $this->user;
     }
+
+
+    public function editarUser($id){
+       $this->user = User::find($id);
+       $this->detail = Detail::find($id);
+       $this->detail->detailable_type == 'militar' ? $this->militar = Militar::find($this->detail->detailable_id) : $this->civil = Civil::find($this->detail->detailable_id);
+       $this->sexo = $this->detail->sexo;
+       $this->detail->detailable_type == 'militar' ? $this->situacao = $this->militar->situacao : null;
+    }
+
+    public function limparForm(){
+        $this->user = new User;
+        $this->detail = new Detail;
+        $this->militar = new Militar;
+        $this->civil = new Civil;
+     
+        $this->reset(['sexo','situacao','password', 'password_confirmation']);
+        $this->resetValidation();
+    }
+
+
 
 
     public function cadastrar()

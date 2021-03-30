@@ -12,6 +12,7 @@ class LiveTable extends Component
 {
 
     use WithPagination;
+    public $userId;
 
     public $isActive;
     public $headers;
@@ -46,8 +47,19 @@ class LiveTable extends Component
         $this->modalFormVisible = true;
     }
 
+    public function editUser($id){
+        $this->userId = $id;
+        $this->modalFormVisible = true;
+
+        $this->emit('editarUser', $id);
+      
+    }
+
     public function hiddenShowModal()
     {
+        $this->emit('limparForm');
+        
+        $this->reset('userId');
         $this->modalFormVisible = false;
     }
 
@@ -82,13 +94,13 @@ class LiveTable extends Component
     public function render()
     {
 
-        $user =  User::search($this->searchTerm)
+        $users =  User::search($this->searchTerm)
         
         ->when($this->isActive, function ($query) {
             return $query->active();
         })
         ->orderBy($this->sortColumn, $this->sortDirection)->paginate(10);
 
-        return view('livewire.model.user.live-table', ['tt' => $user]);
+        return view('livewire.model.user.live-table', ['users' => $users]);
     }
 }

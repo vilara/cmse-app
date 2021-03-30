@@ -3,7 +3,6 @@
     <div class="bg-gray-300">
 
         <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-
             <form>
 
                 <div>
@@ -14,8 +13,8 @@
                                 <div class="px-4 py-5 bg-gray-300 space-y-6 sm:p-6">
                                     <div class="grid grid-cols-4 gap-6">
                                         <div class="col-span-3 sm:col-span-2">
-                                            <x-jet-label for="user.name" value="Login" />
-                                            <x-jet-input id="user.name" type="text" wire:model="user.name" />
+                                            <x-jet-label for="user.name" value="Login{{ $tt }}" />
+                                            <x-jet-input id="user.name" value="{{ $user->name }}" type="text" wire:model="user.name" />
                                             <x-jet-input-error for="user.name" class="mt-2" />
                                         </div>
                                         <div class="col-span-3 sm:col-span-2">
