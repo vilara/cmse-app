@@ -22,30 +22,20 @@ class UserForm extends Component
     public $militar;
     public $detail;
     public $civil;
-    public $sexo;
-    public $situacao;
 
     public $password;
     public $password_confirmation;
-
-
-    /**
-     * Propriedades para popular os selects
-     *
-     * @var mixed
-     */
     public $oms;
     public $cargos;
     public $sections;
     public $postograds;
     public $forcas;
-    public $tt;
 
-    protected $listeners = ['cadastrar', 'editarUser', 'limparForm'];
+    protected $listeners = ['cadastrar', 'editarUserForm', 'limparForm'];
 
     public function mount(User $user, Detail $detail, Militar $militar, Civil $civil)
     {
-        
+
         $this->user = $user;
         $this->detail = $detail;
         $this->militar = $militar;
@@ -60,13 +50,13 @@ class UserForm extends Component
     public function rules()
     {
         $array = [
-            'user.name' => 'required|string|unique:App\Models\User,name|min:4',
-            'user.email' => 'required|email|unique:App\Models\User,email',
-            'user.cpf' => 'required|string|size:11|unique:App\Models\User,cpf|digits:11',
-            'password' => 'required|min:8|confirmed',
+            'user.name' => 'required|string|min:4',
+            'user.email' => 'required|email',
+            'user.cpf' => 'required|string|size:11|digits:11',
+            'password' => '',
             'detail.idt' => 'required',
-            'detail.nome_completo' => 'required|string|min:6|unique:App\Models\Detail,nome_completo',
-            'sexo' => 'required',
+            'detail.nome_completo' => 'required|string|min:6',
+            'detail.sexo' => 'required',
             'detail.dtNasc' => 'required',
             'detail.om_id' => 'required',
             'detail.cargo_id' => 'required',
@@ -75,7 +65,7 @@ class UserForm extends Component
             'militar.postograd_id' => '',
             'militar.nome_guerra' => '',
             'militar.forca_id' => '',
-            'situacao' => '',
+            'militar.situacao' => '',
             'civil.primeiro_nome' => '',
 
         ];
@@ -99,7 +89,7 @@ class UserForm extends Component
         'password.min' => 'A senha deverá conter no mínimo 8 caracteres',
         'password.confirmed' => 'Erro de confirmação de senha',
         'detail.idt.required' => 'Esse campo é obrigatório',
-        'sexo.required' => 'Esse campo é obrigatório',
+        'detail.sexo.required' => 'Esse campo é obrigatório',
         'detail.nome_completo.required' => 'Esse campo é obrigatório',
         'detail.nome_completo.unique' => 'Este nome já está cadastrado no sistema',
         'detail.dtNasc.required' => 'Esse campo é obrigatório',
@@ -112,28 +102,38 @@ class UserForm extends Component
 
     public function UserData()
     {
-        $this->user->password = Hash::make($this->password);
+
+        if ($this->user->id && $this->password) {
+            $this->user->password = Hash::make($this->password);
+        }
+        if (!$this->user->id && $this->password) {
+            $this->user->password = Hash::make($this->password);
+        }
+        if ($this->user->id && !$this->password) {
+            return $this->user;
+        }
         return $this->user;
     }
 
 
-    public function editarUser($id){
-       $this->user = User::find($id);
-       $this->detail = Detail::find($id);
-       $this->detail->detailable_type == 'militar' ? $this->militar = Militar::find($this->detail->detailable_id) : $this->civil = Civil::find($this->detail->detailable_id);
-       $this->sexo = $this->detail->sexo;
-       $this->detail->detailable_type == 'militar' ? $this->situacao = $this->militar->situacao : null;
+    public function editarUserForm($id)
+    {
+        $this->user = User::find($id);
+        $this->detail = Detail::find($id);
+        $this->detail->detailable_type == 'militar' ? $this->militar = Militar::find($this->detail->detailable_id) : $this->civil = Civil::find($this->detail->detailable_id);
     }
 
-    public function limparForm(){
-        $this->user = new User;
-        $this->detail = new Detail;
-        $this->militar = new Militar;
-        $this->civil = new Civil;
-     
-        $this->reset(['sexo','situacao','password', 'password_confirmation']);
+    public function limparForm()
+    {
+        $this->user = User::make();
+        $this->detail->detailable_type == 'militar' ? $this->militar = Militar::make() : $this->civil = Civil::make();
+        $this->detail = Detail::make();
+        $this->reset(['password','password_confirmation']);
         $this->resetValidation();
+        
+        
     }
+
 
 
 
@@ -142,58 +142,67 @@ class UserForm extends Component
     {
 
 
-        $this->validate();
         
+       $this->validate();
         
-        
+      
+      if ($this->user->id && $this->password) {
+            $this->validate([
+                'password' => 'required|min:8|confirmed',
+            ]);
+        }
+
+        if (!$this->user->id) {
+            $this->validate([
+                'password' => 'required|min:8|confirmed',
+                'user.name' => 'unique:App\Models\User,name|min:4',
+                'user.email' => 'unique:App\Models\User,email',
+                'user.cpf' => 'unique:App\Models\User,cpf',
+                'detail.nome_completo' => 'unique:App\Models\Detail,nome_completo',
+
+            ]);
+        }
+
         if ($this->detail->detailable_type == 'militar') {
             $this->validate([
                 'militar.postograd_id' => 'required',
                 'militar.nome_guerra' => 'required',
                 'militar.forca_id' => 'required',
-                'situacao' => 'required',
-                ]);
-            } elseif ($this->detail->detailable_type == 'civil') {
-                $this->validate(['civil.primeiro_nome' => 'required']);
-            }
-            
-            
-            
-            
-            $this->UserData()->save();
-            
-            if ($this->detail->detailable_type == 'militar') {
-                $this->militar->situacao = $this->situacao;
-                $this->militar->save();
-            }
-            
-            if ($this->detail->detailable_type == 'civil') {
-                $this->civil->save();
-            }
-            
-            
-            
-            
-            
-            $this->detail->id = User::where('cpf', $this->user->cpf)->get()->first()->id;
-            $this->detail->sexo = $this->sexo;
-            $this->detail->detailable_type == 'militar' && $this->detail->detailable()->associate($this->militar)->save();
-            $this->detail->detailable_type == 'civil' && $this->detail->detailable()->associate($this->civil)->save();
+                'militar.situacao' => 'required',
+            ]);
+        } elseif ($this->detail->detailable_type == 'civil') {
+            $this->validate(['civil.primeiro_nome' => 'required']);
+        } 
+       
 
 
-
-          /*  unset($this->user);
-           unset($this->militar);
-           unset($this->detail); */
-            $this->emit('triggerRefresh');
-            $this->emit('hiddenShowModal');
-            
-            // $this->dispatchBrowserEvent('user-saved', ['action' => 'Criado', 'user_name' => $this->detail->nome_completo]);
-            
+        $this->UserData()->save();
+        
+        
+        if ($this->detail->detailable_type == 'militar') {
+            $this->militar->save();
+        }elseif ($this->detail->detailable_type == 'civil') {
+            $this->civil->save();
         }
         
-        public function render()
-        {
-            return view('livewire.model.user.user-form');
+        $this->detail->id = User::where('cpf', $this->user->cpf)->get()->first()->id;
+        
+        if ($this->detail->detailable_type == 'militar') {
+            $this->detail->detailable()->associate($this->militar)->save();
+        }elseif ($this->detail->detailable_type == 'civil') {
+            $this->detail->detailable()->associate($this->civil)->save();
         }
+        
+        
+        $this->limparForm();
+        $this->emit('triggerRefresh'); 
+        $this->emit('hiddenShowModal');
+       
+        
+    }
+
+    public function render()
+    {
+        return view('livewire.model.user.user-form');
+    }
 }

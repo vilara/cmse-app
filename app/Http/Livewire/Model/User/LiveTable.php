@@ -50,16 +50,12 @@ class LiveTable extends Component
     public function editUser($id){
         $this->userId = $id;
         $this->modalFormVisible = true;
-
-        $this->emit('editarUser', $id);
+        $this->emit('editarUserForm', $id);
       
     }
 
     public function hiddenShowModal()
     {
-        $this->emit('limparForm');
-        
-        $this->reset('userId');
         $this->modalFormVisible = false;
     }
 

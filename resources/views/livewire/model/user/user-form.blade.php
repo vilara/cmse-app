@@ -13,7 +13,7 @@
                                 <div class="px-4 py-5 bg-gray-300 space-y-6 sm:p-6">
                                     <div class="grid grid-cols-4 gap-6">
                                         <div class="col-span-3 sm:col-span-2">
-                                            <x-jet-label for="user.name" value="Login{{ $tt }}" />
+                                            <x-jet-label for="user.name" value="Login" />
                                             <x-jet-input id="user.name" value="{{ $user->name }}" type="text" wire:model="user.name" />
                                             <x-jet-input-error for="user.name" class="mt-2" />
                                         </div>
@@ -120,24 +120,24 @@
                                                 </div>
                                                 <div class="mt-4 space-y-4">
                                                     <div class="flex items-center">
-                                                        <input wire:model="sexo" id="sexo" name="sexo" value="masculino"
+                                                        <input wire:model="detail.sexo" id="detail.sexo" name="detail.sexo" value="masculino"
                                                             type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
-                                                        <label for="sexo"
+                                                        <label for="detail.sexo"
                                                             class="ml-3 block text-sm font-medium text-gray-500">
                                                             Masculino
                                                         </label>
                                                     </div>
                                                     <div class="flex items-center">
-                                                        <input wire:model="sexo" id="sexo1" name="sexo" value="feminino"
+                                                        <input wire:model="detail.sexo" id="detail.sexo1" name="detail.sexo" value="feminino"
                                                             type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
-                                                        <label for="sexo1"
+                                                        <label for="detail.sexo1"
                                                             class="ml-3 block text-sm font-medium text-gray-500">
                                                             Feminino
                                                         </label>
                                                     </div>
-                                                    <x-jet-input-error for="sexo" class="mt-2" />
+                                                    <x-jet-input-error for="detail.sexo" class="mt-2" />
                                                 </div>
                                             </fieldset>
                                         </div>
@@ -223,7 +223,7 @@
                                                     </div>
                                                     <div class="mt-4 space-y-4">
                                                         <div class="flex items-center">
-                                                            <input wire:model="situacao" id="sit" name="situacao"
+                                                            <input wire:model="militar.situacao" id="sit" name="militar.situacao"
                                                                 type="radio" value="ativa"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                                             <label for="sit"
@@ -232,7 +232,7 @@
                                                             </label>
                                                         </div>
                                                         <div class="flex items-center">
-                                                            <input wire:model="situacao" id="sit1" name="situacao"
+                                                            <input wire:model="militar.situacao" id="sit1" name="militar.situacao"
                                                                 type="radio" value="reserva"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                                             <label for="sit1"
@@ -240,7 +240,7 @@
                                                                 Ativa
                                                             </label>
                                                         </div>
-                                                        <x-jet-input-error for="situacao" class="mt-2" />
+                                                        <x-jet-input-error for="militar.situacao" class="mt-2" />
                                                     </div>
                                                 </fieldset>
                                             </div>
