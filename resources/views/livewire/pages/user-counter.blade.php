@@ -1,3 +1,3 @@
-<div>
+<div wire:poll='incrementUser'>
     {{ $userAmount }}
 </div>

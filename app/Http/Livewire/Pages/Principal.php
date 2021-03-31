@@ -9,7 +9,6 @@ class Principal extends Component
 {
 
 
-    protected $listeners = ['updateUser' => 'render'];
 
     public function mount(){
        

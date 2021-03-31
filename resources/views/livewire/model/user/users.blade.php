@@ -58,9 +58,9 @@
                                             <x-jet-input-error for="user.cpf" class="mt-2" />
                                         </div>
                                         <div class="col-span-6 sm:col-span-2">
-                                            <x-jet-label for="password" value="Senha" />
-                                            <x-jet-input id="password" type="password" wire:model="password" />
-                                            <x-jet-input-error for="password" class="mt-2" />
+                                            <x-jet-label for="user.password" value="Senha" />
+                                            <x-jet-input id="user.password" type="password" wire:model="user.password" />
+                                            <x-jet-input-error for="user.password" class="mt-2" />
                                         </div>
                                         <div class="col-span-6 sm:col-span-2">
                                             <x-jet-label for="password_confirmation" value="Confirmar senha" />
@@ -159,24 +159,24 @@
                                                 </div>
                                                 <div class="mt-4 space-y-4">
                                                     <div class="flex items-center">
-                                                        <input wire:model="sexo" name="sexo" value="masculino"
+                                                        <input wire:model="detail.sexo" name="detail.sexo" value="masculino"
                                                             type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
-                                                        <label for="sexo"
+                                                        <label for="detail.sexo"
                                                             class="ml-3 block text-sm font-medium text-gray-500">
                                                             Masculino
                                                         </label>
                                                     </div>
                                                     <div class="flex items-center">
-                                                        <input wire:model="sexo" name="sexo" value="feminino"
+                                                        <input wire:model="detail.sexo" name="detail.sexo" value="feminino"
                                                             type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
-                                                        <label for="sexo1"
+                                                        <label for="detail.sexo1"
                                                             class="ml-3 block text-sm font-medium text-gray-500">
                                                             Feminino
                                                         </label>
                                                     </div>
-                                                    <x-jet-input-error for="sexo" class="mt-2" />
+                                                    <x-jet-input-error for="detail.sexo" class="mt-2" />
                                                 </div>
                                             </fieldset>
                                         </div>
@@ -188,7 +188,7 @@
                                                 </div>
                                                 <div class="mt-4 space-y-4">
                                                     <div class="flex items-center">
-                                                        <input wire:model="detailable_type" name="detailable_type"
+                                                        <input wire:model="detail.detailable_type" name="detail.detailable_type"
                                                             value="militar" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                                         <label for="type"
@@ -197,7 +197,7 @@
                                                         </label>
                                                     </div>
                                                     <div class="flex items-center">
-                                                        <input wire:model="detailable_type" name="detailable_type"
+                                                        <input wire:model="detail.detailable_type" name="detail.detailable_type"
                                                             value="civil" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                                         <label for="type1"
@@ -205,7 +205,7 @@
                                                             Civil
                                                         </label>
                                                     </div>
-                                                    <x-jet-input-error for="detailable_type" class="mt-2" />
+                                                    <x-jet-input-error for="detail.detailable_type" class="mt-2" />
                                                 </div>
                                             </fieldset>
                                         </div>
@@ -232,7 +232,7 @@
                     </div>
                 </div>
             </div>
-            @if ($detailable_type == 'militar')
+            @if ($detail->detailable_type == 'militar')
                 {{-- Início Informações Específicas militar --}}
                 <div class="mt-10 sm:mt-0">
                     <div class="md:grid md:grid-cols-3 md:gap-6">
@@ -276,7 +276,7 @@
                                                 </div>
                                                 <div class="mt-4 space-y-4">
                                                     <div class="flex items-center">
-                                                        <input wire:model="situacao" id="sit" name="situacao"
+                                                        <input wire:model="militar.situacao" id="sit" name="militar.situacao"
                                                             type="radio" value="ativa"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                                         <label for="sit"
@@ -285,7 +285,7 @@
                                                         </label>
                                                     </div>
                                                     <div class="flex items-center">
-                                                        <input wire:model="situacao" id="sit1" name="situacao"
+                                                        <input wire:model="militar.situacao" id="sit1" name="militar.situacao"
                                                             type="radio" value="reserva"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                                         <label for="sit1"
@@ -293,7 +293,7 @@
                                                             Ativa
                                                         </label>
                                                     </div>
-                                                    <x-jet-input-error for="situacao" class="mt-2" />
+                                                    <x-jet-input-error for="militar.situacao" class="mt-2" />
                                                 </div>
                                             </fieldset>
                                         </div>
@@ -333,7 +333,7 @@
                         </div>
                     </div>
                     {{-- Final Informações Específicas Militar --}}
-                @elseif ($detailable_type == 'civil')
+                @elseif ($detail->detailable_type == 'civil')
                     {{-- separador --}}
                     <div class="hidden sm:block" aria-hidden="true">
                         <div class="">

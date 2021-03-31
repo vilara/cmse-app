@@ -22,20 +22,11 @@ class Users extends Component
     public $militar;
     public $detail;
     public $civil;
-    public $sexo;
-    public $situacao;
     public $detailable_type;
 
 
-    public $password;
     public $password_confirmation;
 
-
-    /**
-     * Propriedades para popular os selects
-     *
-     * @var mixed
-     */
     public $oms;
     public $cargos;
     public $sections;
@@ -43,7 +34,7 @@ class Users extends Component
     public $forcas;
 
 
-    protected $listeners = ['cadastrar', 'triggerRefresh' => '$refresh'];
+    protected $listeners = ['triggerRefresh' => '$refresh'];
 
     public function mount(User $user, Detail $detail, Militar $militar, Civil $civil)
     {
@@ -64,19 +55,20 @@ class Users extends Component
             'user.name' => 'required|string|unique:App\Models\User,name|min:4',
             'user.email' => 'required|email|unique:App\Models\User,email',
             'user.cpf' => 'required|string|size:11|unique:App\Models\User,cpf|digits:11',
-            'password' => 'required|min:8|confirmed',
+            'user.password' => 'required|min:8',
+            'password_confirmation' => 'required|same:user.password|min:6',
             'detail.idt' => 'required',
             'detail.nome_completo' => 'required|string|min:6|unique:App\Models\Detail,nome_completo',
-            'sexo' => 'required',
+            'detail.sexo' => 'required',
             'detail.dtNasc' => 'required',
             'detail.om_id' => 'required',
             'detail.cargo_id' => 'required',
             'detail.section_id' => 'required',
-            'detailable_type' => 'required',
+            'detail.detailable_type' => 'required',
             'militar.postograd_id' => '',
             'militar.nome_guerra' => '',
             'militar.forca_id' => '',
-            'situacao' => '',
+            'militar.situacao' => '',
             'civil.primeiro_nome' => '',
 
         ];
@@ -96,132 +88,76 @@ class Users extends Component
         'user.cpf.size' => 'Esse campo deve conter 11 dígitos',
         'user.cpf.unique' => 'Este cpf já está cadastrado no sistema',
         'user.cpf.digits' => 'Este campo só aceita números',
-        'password.required' => 'Este campo é obrigatório',
-        'password.min' => 'A senha deverá conter no mínimo 8 caracteres',
-        'password.confirmed' => 'Erro de confirmação de senha',
+        'user.password.required' => 'Este campo é obrigatório',
+        'user.password.min' => 'A senha deverá conter no mínimo 8 caracteres',
+        'password_confirmation.same' => 'Erro de confirmação de senha',
         'detail.idt.required' => 'Esse campo é obrigatório',
-        'sexo.required' => 'Esse campo é obrigatório',
+        'detail.sexo.required' => 'Esse campo é obrigatório',
         'detail.nome_completo.required' => 'Esse campo é obrigatório',
         'detail.nome_completo.unique' => 'Este nome já está cadastrado no sistema',
         'detail.dtNasc.required' => 'Esse campo é obrigatório',
         'detail.om_id.required' => 'Esse campo é obrigatório',
         'detail.cargo_id.required' => 'Esse campo é obrigatório',
         'detail.section_id.required' => 'Esse campo é obrigatório',
-        'detailable_type.required' => 'Esse campo é obrigatório',
+        'detail.detailable_type.required' => 'Esse campo é obrigatório',
     ];
 
 
    
 
-  public function limparDetail()
-    {
-       /*  unset($this->detail->detailable_type);
-        unset($this->detail->nome_completo);
-        unset($this->detail->idt);
-        unset($this->detail->om_id);
-        unset($this->detail->section_id);
-        unset($this->detail->cargo_id);
-        unset($this->detail->dtNasc); */
-
-        $this->user = new User;
-    }
-
-    public function limparUser()
-    {
-        unset($this->user->name);
-        unset($this->user->email);
-        unset($this->user->password);
-        unset($this->user->cpf);
-      
-    }
-    public function limparMilitar()
-    {
-        unset($this->militar->nomme_completo);
-            
-    }
-    public function limparCivil()
-    {
-        unset($this->civil->primeiro_nome);
-            
-    }
-
-
+ 
     public function limpar()
     {
 
-        $this->user = new User;
-        $this->detail = new Detail;
-        $this->militar = new Militar;
-        $this->civil = new Civil;
-     /*    $this->limparUser();
-        $this->limparDetail();
-        $this->limparMilitar();
-        $this->limparCivil(); */
-        $this->reset(['sexo','situacao', 'detailable_type','password', 'password_confirmation']);
+        $this->user = User::make();
+        $this->detail = Detail::make();
+        $this->militar = Militar::make();
+        $this->civil = Civil::make();
+     
+        $this->reset(['password_confirmation']);
         $this->resetValidation();
     }
 
  public function UserData()
     {
 
-       // dd($this->password);
-       $this->password ? $this->user->password = Hash::make($this->password) : $this->user->password = null;
-        return $this->user;
+       $this->user->password = Hash::make($this->user->password);
+       return $this->user;
     }
 
     public function cadastrar()
     {
-      
-       // dd($this->UserData());
-      $this->validate();
+        $this->validate();
         
-        if ($this->detailable_type == 'militar') {
+        if ($this->detail->detailable_type == 'militar') {
             $this->validate([
                 'militar.postograd_id' => 'required',
                 'militar.nome_guerra' => 'required',
                 'militar.forca_id' => 'required',
-                'situacao' => 'required',
+                'militar.situacao' => 'required',
                 ]);
-            } elseif ($this->detailable_type == 'civil') {
+            } elseif ($this->detail->detailable_type == 'civil') {
                 $this->validate(['civil.primeiro_nome' => 'required']);
             }
             
-            
-            
             $this->UserData()->save();
             
-            
-            
-            
-            if ($this->detailable_type == 'militar') {
-                $this->militar->situacao = $this->situacao;
+            if ($this->detail->detailable_type == 'militar') {
                 $this->militar->save();
-            }
-            
-            if ($this->detailable_type == 'civil') {
+            }elseif ($this->detail->detailable_type == 'civil') {
                 $this->civil->save();
             }
             
-            
-            
-            
-            
             $this->detail->id = User::where('cpf', $this->user->cpf)->get()->first()->id;
-            $this->detail->sexo = $this->sexo;
-            $this->detail->detailable_type = $this->detailable_type;
-            $this->detailable_type == 'militar' && $this->detail->detailable()->associate($this->militar)->save();
-            $this->detailable_type == 'civil' && $this->detail->detailable()->associate($this->civil)->save();
+
+            if($this->detail->detailable_type == 'militar') {$this->detail->detailable()->associate($this->militar)->save();}
+            else{$this->detail->detailable()->associate($this->civil)->save();}
             
 
             $this->limpar();
             
             session()->flash('message', 'Usuário cadastrado com sucesso');
-         //   dd($this->detail); 
-            
-           // $this->limpar();
-        //    $this->emit('updatUser');
-
-
+       
     }
 
     public function render()
