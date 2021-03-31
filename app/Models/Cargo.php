@@ -11,6 +11,6 @@ class Cargo extends Model
     protected $fillable = ['nomeCg', 'siglaCg'];
 
     public function details(){
-        return $this->hasOne('App\Detail', 'detail_id');
+        return $this->hasOne('App\Models\Detail', 'detail_id');
     }
 }

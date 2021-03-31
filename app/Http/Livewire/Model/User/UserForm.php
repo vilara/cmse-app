@@ -31,7 +31,7 @@ class UserForm extends Component
     public $postograds;
     public $forcas;
 
-    protected $listeners = ['cadastrar', 'editarUserForm', 'limparForm'];
+    protected $listeners = ['cadastrar', 'editarUserForm', 'limparForm', 'removeUser'];
 
     public function mount(User $user, Detail $detail, Militar $militar, Civil $civil)
     {
@@ -136,6 +136,16 @@ class UserForm extends Component
 
 
 
+    public function removeUser($id){
+
+       $det =  Detail::find($id);
+       $det->detailable_type == 'militar' ? Militar::destroy($det->detailable_id) :  Civil::destroy($det->detailable_id);
+       $det->user()->delete();
+       
+       //$usu->detail->delete();
+
+        $this->emit('triggerRefresh'); 
+    }
 
 
     public function cadastrar()

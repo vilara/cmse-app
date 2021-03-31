@@ -15,13 +15,13 @@ class Postograd extends Model
 
     public function militares()
     {
-        return $this->hasMany('App\Militar');
+        return $this->hasMany('App\Models\Militar');
     }
 
     public function details(){
         return $this->hasManyThrough(
-            'App\Detail',
-            'App\Militar',
+            'App\Models\Detail',
+            'App\Models\Militar',
             'postograd_id',
             'detailable_id',
             'id',

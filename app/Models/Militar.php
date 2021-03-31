@@ -13,15 +13,15 @@ class Militar extends Model
 
     public function postograds()
     {
-        return $this->belongsTo('App\Postograd', 'postograd_id', 'id');
+        return $this->belongsTo('App\Models\Postograd', 'postograd_id', 'id');
     }
 
     public function forcas()
     {
-        return $this->belongsTo('App\Forca', 'forca_id', 'id');
+        return $this->belongsTo('App\Models\Forca', 'forca_id', 'id');
     }
 
     public function detail(){
-        return $this->morphOne('App\Detail', 'detailable');
+        return $this->morphOne('App\Models\Detail', 'detailable');
     }
 }

@@ -21,22 +21,22 @@ class Detail extends Model
     }
 
     public function user(){
-        return $this->belongsTo('App\User', 'user_id');
+        return $this->belongsTo('App\Models\User', 'id');
     }
 
     public function oms()
     {
-        return $this->belongsTo('App\Om', 'om_id', 'id');
+        return $this->belongsTo('App\Models\Om', 'om_id', 'id');
     }
 
     public function cargos()
     {
-        return $this->belongsTo('App\Cargo', 'cargo_id', 'id');
+        return $this->belongsTo('App\Models\Cargo', 'cargo_id', 'id');
     }
 
     public function sections()
     {
-        return $this->belongsTo('App\Section', 'section_id', 'id');
+        return $this->belongsTo('App\Models\Section', 'section_id', 'id');
     }
 
     public function detailable(){

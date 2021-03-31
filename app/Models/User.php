@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -87,12 +88,16 @@ class User extends Authenticatable
         return 'id';
     }
 
+    public function detail(){
+        return $this->hasOne('App\Models\Detail', 'id');
+    }
+
 
     public function oms()
     {
         return $this->hasManyThrough(
-            'App\Om',
-            'App\Detail',
+            'App\Models\Om',
+            'App\Models\Detail',
             'om_id',
             'id',
         );
@@ -101,8 +106,8 @@ class User extends Authenticatable
     public function sections()
     {
         return $this->hasManyThrough(
-            'App\Section',
-            'App\Detail',
+            'App\Models\Section',
+            'App\Models\Detail',
             'section_id',
             'id',
         );
@@ -111,8 +116,8 @@ class User extends Authenticatable
     public function permissions()
     {
         return $this->hasManyThrough(
-            'App\Permission',
-            'App\Roler',
+            'App\Models\Permission',
+            'App\Models\Roler',
             'user_id',
             'roler_id'
 
@@ -121,7 +126,7 @@ class User extends Authenticatable
 
     public function rolers()
     {
-        return $this->BelongsToMany('App\Roler', 'roler_user', 'user_id', 'roler_id')->withPivot('user_id', 'roler_id');
+        return $this->BelongsToMany('App\Models\Roler', 'roler_user', 'user_id', 'roler_id')->withPivot('user_id', 'roler_id');
     }
 
     public function scopeActive($query)

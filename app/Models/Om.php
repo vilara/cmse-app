@@ -16,11 +16,11 @@ class Om extends Model
 
     public function sections()
     {
-        return $this->belongsToMany('App\Section');
+        return $this->belongsToMany('App\Models\Section');
     }
 
     public function details(){
-        return $this->hasOne('App\Detail', 'detail_id');
+        return $this->hasOne('App\Models\Detail', 'detail_id');
     }
 
 }

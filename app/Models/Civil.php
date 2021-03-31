@@ -13,6 +13,6 @@ class Civil extends Model
     protected $table = 'civis';
 
     public function detail(){
-        return $this->morphOne('App\Detail', 'detailable');
+        return $this->morphOne('App\Models\Detail', 'detailable');
     }
 }

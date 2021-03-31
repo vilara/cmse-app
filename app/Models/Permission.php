@@ -16,6 +16,6 @@ class Permission extends Model
     ];
 
     public function rolers(){
-        return $this->belongsToMany('App\Roler')->withPivot('permission_id', 'roler_id');
+        return $this->belongsToMany('App\Models\Roler')->withPivot('permission_id', 'roler_id');
     }
 }

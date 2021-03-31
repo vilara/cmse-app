@@ -13,7 +13,7 @@ class Forca extends Model
     public $timestamps = false;
 
     public function militares(){
-            return $this->hasMany('App\Militar');
+            return $this->hasMany('App\Models\Militar');
     }
     
 }

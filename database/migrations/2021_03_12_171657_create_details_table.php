@@ -15,7 +15,7 @@ class CreateDetailsTable extends Migration
     {
         Schema::create('details', function (Blueprint $table) {
             $table->string('id')->primary();
-            $table->foreign('id')->references('id')->on('arranchacmse.users');
+            $table->foreign('id')->references('id')->on('arranchacmse.users')->onDelete('cascade');
             $table->string('idt')->nullable();
             $table->enum('sexo', ['masculino','feminino'])->nullable();
             $table->unsignedBigInteger('om_id')->nullable();

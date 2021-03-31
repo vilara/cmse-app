@@ -54,8 +54,15 @@ class LiveTable extends Component
       
     }
 
+    public function removeUser($id){
+        $this->emit('removeUser', $id);
+      
+    }
+
     public function hiddenShowModal()
     {
+
+        $this->emit('limparForm');
         $this->modalFormVisible = false;
     }
 
