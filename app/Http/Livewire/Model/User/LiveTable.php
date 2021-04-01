@@ -13,6 +13,7 @@ class LiveTable extends Component
 
     use WithPagination;
     public $userId;
+    public $userName;
 
     public $isActive;
     public $headers;
@@ -21,6 +22,8 @@ class LiveTable extends Component
     public $searchTerm;
     public $modalFormVisible;
     public $user;
+    public $confirmingUserDeletion = false;
+    public $confirmingUserActivation = false;
 
     protected $listeners = ['hiddenShowModal', 'triggerRefresh' => '$refresh'];
 
@@ -54,8 +57,26 @@ class LiveTable extends Component
       
     }
 
+
+    public function confirmingUserDeletion(User $user){
+        $this->confirmingUserDeletion = $user->id;
+        $this->userName = $user->name;
+    }
+
     public function removeUser($id){
-        $this->emit('removeUser', $id);
+        $this->emit('removeUser',$id);
+        $this->confirmingUserDeletion = false;
+      
+    }
+
+    public function desativarUser($id){
+        $this->emit('desativarUser',$id);
+        $this->confirmingUserDeletion = false;
+      
+    }
+    public function ativarUser($id){
+        $this->emit('ativarUser',$id);
+        $this->confirmingUserDeletion = false;
       
     }
 
@@ -71,6 +92,7 @@ class LiveTable extends Component
     {
         $this->modalFormVisible = 0;
         $this->headers = $this->headerConfig();
+        $this->isActive = false;
     }
 
 
@@ -100,6 +122,9 @@ class LiveTable extends Component
         $users =  User::search($this->searchTerm)
         
         ->when($this->isActive, function ($query) {
+            return $query->where('active', 0);
+        })
+        ->when(!$this->isActive, function ($query) {
             return $query->active();
         })
         ->orderBy($this->sortColumn, $this->sortDirection)->paginate(10);
