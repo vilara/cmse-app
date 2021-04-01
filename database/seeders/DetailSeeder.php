@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Detail;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class DetailSeeder extends Seeder
 {
@@ -15,9 +16,12 @@ class DetailSeeder extends Seeder
      */
     public function run()
     {
-        Detail::create([
-            'id' => User::all()->first()->id,
-            'idt' => '0288173735',
+
+       $users =  User::all();
+       foreach ($users as $user) {
+             Detail::create([
+            'id' => $user->id,
+            'idt' => Str::random(10),
             'sexo' => 'masculino',
             'om_id' => 1,
             'cargo_id' => 1,
@@ -27,5 +31,7 @@ class DetailSeeder extends Seeder
             'detailable_id' => 1,
             'detailable_type' => 'militar'
         ]);
+       }
+     
     }
 }
