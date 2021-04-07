@@ -18,8 +18,8 @@ class CreateUsersTable extends Migration
         Schema::connection('mysql2')->create('users', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
-            $table->string('email')->unique();
-            $table->string('cpf')->unique();
+            $table->string('email')->nullable();
+            $table->string('cpf')->nullable();
             $table->string('password')->nullable();
             $table->boolean('active')->default(1);
             $table->timestamp('email_verified_at')->nullable();

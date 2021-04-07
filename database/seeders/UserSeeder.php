@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Usuario1;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -16,9 +17,19 @@ class UserSeeder extends Seeder
     public function run()
     {
 
-        User::factory()
-        ->count(50)
-        ->create();
-      
+        $usuarios =  Usuario1::all();
+        foreach ($usuarios as $usuario) {
+            User::create([
+                'name' => $usuario->login,
+                'email' => $usuario->email,
+                'email_verified_at' => now(),
+                'password' => Hash::make($usuario->senha)
+            ]);
+        }
+
+       /*    User::factory()
+        ->count(1)
+        ->create(); */
+     
     }
 }

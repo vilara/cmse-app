@@ -21,7 +21,7 @@ class DetailSeeder extends Seeder
        foreach ($users as $user) {
              Detail::create([
             'id' => $user->id,
-            'idt' => Str::random(10),
+        /*     'idt' => Str::random(10),
             'sexo' => 'masculino',
             'om_id' => 1,
             'cargo_id' => 1,
@@ -29,7 +29,7 @@ class DetailSeeder extends Seeder
             'section_id' => 1,
             'nome_completo' => 'Marcelo Martins Vilara',
             'detailable_id' => 1,
-            'detailable_type' => 'militar'
+            'detailable_type' => 'militar' */
         ]);
        }
      
