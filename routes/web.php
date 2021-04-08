@@ -35,7 +35,8 @@ Route::group(['middleware' => ['authSite']], function(){
     Route::get('/principal', [LoginController::class, 'profile'])->name('principal');
     Route::get('/dashboard', [LoginController::class, 'profile'])->name('dashboard');
     Route::get('/teste', [PrincipalController::class, 'teste'])->name('teste');
-    Route::resource('users', UserController::class);
+    Route::resource('users', UserController::class)->except('update');
+   Route::get('users/update/{id}', [UserController::class, 'update'])->name('users.update');
 });
 //Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
 

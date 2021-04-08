@@ -28,6 +28,7 @@
             <thead>
                 <tr class="bg-gray-300 text-gray-600 uppercase text-sm leading-normal rounded-LG">
 
+                    <th class="py-3 px-6 text-left cursor-pointer">Nome Completo</th>
                     @foreach ($headers as $key => $value)
 
                         <th class="py-3 px-6 text-left cursor-pointer" wire:click="sort('{{ $key }}')">
@@ -44,6 +45,10 @@
                 @if ($users->count() > 0)
                     @foreach ($users as $user)
                         <tr class="border-b border-gray-300 hover:bg-gray-100">
+                            <td class="py-3 px-6 text-left whitespace-nowrap">{{ 
+                                $user->detail->detailable_type == 'militar' ?
+                                $user->detail->detailable->postograds->siglaPg.' '.$user->detail->nome_completo : 
+                                'SC '.$user->detail->nome_completo }}</td>
                             @foreach ($headers as $key => $value)
                                 <td class="py-3 px-6 text-left whitespace-nowrap">
                                     {{ $user->$key }}

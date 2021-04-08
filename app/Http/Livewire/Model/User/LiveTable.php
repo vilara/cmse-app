@@ -37,10 +37,10 @@ class LiveTable extends Component
     public function headerConfig()
     {
         return [
-            'id' => 'id',
+           
             'name' => 'Login',
             'email' => 'Email',
-            'created_at' => 'Criado',
+           
         ];
     }
 

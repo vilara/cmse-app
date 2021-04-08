@@ -14,7 +14,7 @@
                                     <div class="grid grid-cols-4 gap-6">
                                         <div class="col-span-3 sm:col-span-2">
                                             <x-jet-label for="user.name" value="Login" />
-                                            <x-jet-input id="user.name" value="{{ $user->name }}" type="text" wire:model.lazy="user.name" />
+                                            <x-jet-input id="user.name" type="text" wire:model.lazy="user.name" />
                                             <x-jet-input-error for="user.name" class="mt-2" />
                                         </div>
                                         <div class="col-span-3 sm:col-span-2">
