@@ -44,9 +44,9 @@
                                             <x-jet-input-error for="user.cpf" class="mt-2" />
                                         </div>
                                         <div class="col-span-6 sm:col-span-2">
-                                            <x-jet-label for="user.password" value="Senha" />
-                                            <x-jet-input id="user.password" type="password" wire:model="user.password" />
-                                            <x-jet-input-error for="user.password" class="mt-2" />
+                                            <x-jet-label for="password" value="Senha" />
+                                            <x-jet-input id="password" type="password" wire:model="password" />
+                                            <x-jet-input-error for="password" class="mt-2" />
                                         </div>
                                         <div class="col-span-6 sm:col-span-2">
                                             <x-jet-label for="password_confirmation" value="Confirmar senha" />

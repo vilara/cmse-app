@@ -11,6 +11,7 @@ use App\Models\Om;
 use App\Models\Postograd;
 use App\Models\Section;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 
 class UsersEdit extends Component
@@ -24,6 +25,7 @@ class UsersEdit extends Component
     public Civil $civil;
     public $detailable_type;
     public $password_confirmation;
+    public $password;
 
 
     public $oms;
@@ -57,7 +59,7 @@ class UsersEdit extends Component
             'user.name' => 'required|string|min:4',
             'user.email' => 'required|email',
             'user.cpf' => 'required|string|size:11|digits:11',
-            'user.password' => '',
+            'password' => '',
             'password_confirmation' => '',
             'detail.idt' => 'required',
             'detail.nome_completo' => 'required|string|min:6',
@@ -113,16 +115,26 @@ class UsersEdit extends Component
 
     }
 
+    public function UserData()
+    {
+
+        if ($this->password) {
+            $this->user->password = Hash::make($this->password);
+        }
+      
+        return $this->user;
+    }
+
     public function cadastrar()
     {
           
         $this->validate();
         
       
-        if ($this->user->password) {
+        if ($this->password) {
               $this->validate([
-                'user.password' => 'required|min:8',
-                'password_confirmation' => 'required|same:user.password|min:6',
+                'password' => 'required|min:8',
+                'password_confirmation' => 'required|same:password|min:6',
               ]);
           }
   
@@ -141,7 +153,7 @@ class UsersEdit extends Component
          
   
   
-          $this->user->save();
+          $this->UserData()->save();
           
           
           if ($this->detail->detailable_type == 'militar') {
@@ -169,13 +181,12 @@ class UsersEdit extends Component
     {
 
         $this->user =  User::find($this->idUser);
-        unset($this->user->password);
 
         $this->detail = Detail::find($this->user->id);
         $this->detail->detailable_type == 'militar' ? $this->militar = Militar::find($this->detail->detailable_id) : $this->civil = Civil::find($this->detail->detailable_id);
 
      
-        $this->reset(['password_confirmation']);
+        $this->reset(['password','password_confirmation']);
         $this->resetValidation();
     }
 
