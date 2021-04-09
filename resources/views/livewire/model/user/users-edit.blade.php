@@ -16,7 +16,7 @@
                         <div class="px-4 sm:px-0">
                             <h3 class="text-lg font-medium leading-6 text-gray-900">Perfil</h3>
                             <p class="mt-1 text-sm text-gray-600">
-                                Essas informações serão utilizadas para acesso aos sistemas, portanto, preencha
+                                As informações ao lado serão necessárias para permitir o acesso aos sistemas desenvolvidos pela STI do CMSE, portanto, preencha
                                 corretamente os campos ao lado.
                             </p>
                         </div>
@@ -78,9 +78,8 @@
                         <div class="px-4 sm:px-0">
                             <h3 class="text-lg font-medium leading-6 text-gray-900">Informações gerais</h3>
                             <p class="mt-1 text-sm text-gray-600">
-                                Essas informações serão utilizadas para controle do pessaol e registro de informações
-                                para serem utilizadas nos sistemas.O
-                                Sigilo dos dados estaram protegidos no servidor do CMSE.
+                                Essas informações serão utilizadas para controle do pessoal e registro de informações
+                                geral de militares e civis.O sigilo dos dados estarão protegidos no servidor do CMSE.
                             </p>
                         </div>
                     </div>
@@ -221,7 +220,7 @@
                             <div class="px-4 sm:px-0">
                                 <h3 class="text-lg font-medium leading-6 text-gray-900">Informações específicas</h3>
                                 <p class="mt-1 text-sm text-gray-600">
-                                    Dados específicos para cada categoria de usuário
+                                    Dados específicos para cada categoria de usuário (militares)
                                 </p>
                             </div>
                         </div>
@@ -326,7 +325,7 @@
                                 <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
                                     <button wire:click.prevent="cadastrar" type="submit"
                                         class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                        Editar
+                                        Enviar
                                     </button>
                                 </div>
                             </div>
@@ -348,7 +347,7 @@
                                 <div class="px-4 sm:px-0">
                                     <h3 class="text-lg font-medium leading-6 text-gray-900">Informações específicas</h3>
                                     <p class="mt-1 text-sm text-gray-600">
-                                        Dados específicos para cada categoria de usuário
+                                        Dados específicos para cada categoria de usuário (civis)
                                     </p>
                                 </div>
                             </div>
@@ -369,7 +368,7 @@
                                     <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
                                         <button wire:click.prevent="cadastrar" type="submit"
                                             class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                            Editar
+                                            Enviar
                                         </button>
                                     </div>
                                 </div>
