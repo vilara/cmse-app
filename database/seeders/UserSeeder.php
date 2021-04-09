@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-
+ 
         $usuarios =  Usuario1::all();
         foreach ($usuarios as $usuario) {
             User::create([
@@ -25,11 +25,11 @@ class UserSeeder extends Seeder
                 'email_verified_at' => now(),
                 'password' => Hash::make($usuario->senha)
             ]);
-        }
-
-       /*    User::factory()
+        } 
+   /* 
+       User::factory()
         ->count(1)
-        ->create(); */
-     
+        ->create();*/
+    
     }
 }
